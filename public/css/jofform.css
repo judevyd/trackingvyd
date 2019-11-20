@@ -1,0 +1,140 @@
+body {
+    text-transform: uppercase;
+    font-family: Arial !important;
+    font-size: 14px;
+}
+@media print {
+  
+}
+.row.shank-details-body>div {
+    font-weight: normal !important;
+}
+.card {
+    border-radius: 0px !important;
+}
+span.order-name {
+    color: green;
+}
+.row.ring-att {
+    margin: 10px 0px;
+}
+.col.remarks {
+    font-weight: bold;
+    font-size: 20px;
+    margin: auto;
+}
+.col.att-artwork {
+    background: black;
+    color: white;
+    padding: 8px;
+    font-size: 20px;
+    text-align: left !important;
+}
+.col-8.ring-img {
+    text-align: center;
+}
+span.jof-no {
+    font-size: 28px !important;;
+    font-weight: bold;
+    color: #007cb9;
+}
+span.fb-sales {
+    font-size: 20px !important;;
+    font-weight: bold;
+    color: #007cb9;
+}
+.col-6.jof-no-div {
+    text-align: center;
+}
+.order-details, .ring-details {
+    font-weight: bold;
+}
+.col-8.ring-img>img {
+    max-width: 100%;
+    width: 100%;
+}
+.col-6.order-no {
+    font-weight: bold;
+}
+span.due-date {
+    color: red;
+    font-weight: bold;
+    font-size: 28px;
+}
+.container-fluid {
+    padding: 0px !important;
+}
+.col.shanks-details {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+.row.shank-details-hdr {
+    padding: 15px 0px;
+    background: black;
+    color: white;
+}
+.row.shank-details-body {
+    margin: 10px 0px;
+}
+.row.foot-remarks>.col>div {
+    font-size: 15px;
+    padding: 10px 0px 10px;
+    border-bottom: 1px solid #cecece;
+}
+
+/* jof status */
+.trans{
+    -webkit-animation: NAME-YOUR-ANIMATION 1s infinite;  /* Safari 4+ */
+    -moz-animation: NAME-YOUR-ANIMATION 1s infinite;  /* Fx 5+ */
+    -o-animation: NAME-YOUR-ANIMATION 1s infinite;  /* Opera 12+ */
+    animation: NAME-YOUR-ANIMATION 1s infinite;  /* IE 10+, Fx 29+ */
+  }
+  
+  @keyframes NAME-YOUR-ANIMATION {
+    0%, 49% {
+      background-color: transparent;
+      /* border: 3px solid #e50000; */
+    }
+    50%, 100% {
+      background-color: #e50000;
+    }
+  }
+  
+  .radiOPTS {
+      margin-top: 5px;
+      margin-left: 10px;
+  }
+  
+  /* 2 DAYS */
+  .transyellow{
+    background-color: #ffc107;
+  }
+  
+  /* 4DAYS */
+  .transblue{
+    background-color: #17a2b8;
+  }
+  /* 6 days */
+  .transgreen{
+    background-color: #28a745;
+  }
+  
+  .not_special{
+     background-color: #e0e0e000 !important;
+  }
+  .bg-dark {
+      color: #ffc107 !important;
+  }
+  .bg-done{
+    background-color:#286326;
+  }
+  .legends {
+      margin-left: 23px;
+      padding-top: 10px;
+  }
+
+  td,th{
+      border: 1px solid;
+      padding:8px;
+  }
