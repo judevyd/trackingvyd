@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\HistoryLogs;
 use App\User;
 
 class LoginController extends Controller
@@ -52,18 +51,8 @@ class LoginController extends Controller
      * @param  mixed  $user
      * @return mixed
      */
-    protected function authenticated(Request $request, $historylogs)
+    protected function authenticated(Request $request)
     {   
-        if(Auth::user()->role == 0){
-            $fullname = Auth::user()->first_name .' '. Auth::user()->last_name;
-            $history=HistoryLogs::create([
-                'user_id'=>Auth::user()->id,
-                'name' => $fullname ,
-                'last_login_at' => Carbon::createFromFormat('Y-m-d H:i:s', now())->setTimezone('Asia/Singapore'),
-                'last_login_ip' => $request->getClientIp(),
-            ]);
-        }
-       
      
     }
 }

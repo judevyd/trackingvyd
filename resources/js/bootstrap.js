@@ -45,7 +45,6 @@ if (token) {
 
 // import Echo from 'laravel-echo'
 
-// window.Pusher = require('pusher-js');
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
@@ -53,3 +52,14 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+import Echo from "laravel-echo"
+window.Pusher = require('pusher-js');
+
+
+window.Echo = new Echo({
+  broadcaster: 'pusher',
+  key: '6a6aac78cb3783fd988a',
+  cluster: 'ap1',
+  forceTLS: true,
+//   enabledTransports: ['ws', 'wss'],
+});

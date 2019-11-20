@@ -25,7 +25,7 @@ th{
 
 <template>
 <div>
-  <v-app light>
+     <v-app light>
     <v-toolbar color="white">
       <v-toolbar-title v-text="title"></v-toolbar-title>
     </v-toolbar>
@@ -45,7 +45,14 @@ th{
 
            
           </v-layout>
-         
+          <div class="container">
+            <div class="row search-bar">
+              <div>
+                <v-text-field v-model="trackcode"  class="my-12" label="Type your customer code assigned to you" outlined dark></v-text-field>
+                <v-btn class="my-12" color="blue lighten-2" dark large @click='searchurl()'> Search</v-btn>
+              </div>
+            </div>
+          </div>
         </v-parallax>
       </section>
 
@@ -59,14 +66,6 @@ th{
             <div class="text-center">
               <h2 class="headline">GET UPDATES ON YOUR ORDERS!</h2>
             </div>
-             <div class="container">
-            <div class="row search-bar">
-              <div>
-                <v-text-field v-model="trackcode"  class="my-12" label="Type your customer code assigned to you" outlined dark></v-text-field>
-                <v-btn class="my-12" color="blue lighten-2" dark large @click='searchurl()'> Search</v-btn>
-              </div>
-            </div>
-          </div>
           </v-flex>
               <v-data-table  :headers="headers" :items="dataItems" :search="search" class="elevation-1">
                       <template v-slot:item.jof_status="{ item }" > 

@@ -24,7 +24,7 @@ class JOFController extends Controller
     {
         switch($id){
             case 1:
-                $status = "Registration Section";
+                $status = "Receiving Section";
                break;
             case 2:
                 // $status = "Mold Section";
@@ -276,7 +276,6 @@ class JOFController extends Controller
       
         return $result;
     }
-    
     public function sevenDueDate(){
         $datenow = Carbon::now('GMT+8:00')->isoFormat('YYYY-MM-DD');
         $datesevendays = Carbon::now('GMT+8:00')->addDays(7)->isoFormat('YYYY-MM-DD');

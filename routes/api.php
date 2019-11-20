@@ -23,25 +23,36 @@ Route::get('/user','UserController@index');
 Route::post('/usercreate','UserController@register');
 Route::put('/userupdate','UserController@update');
 Route::delete('/userdelete/{id}','UserController@destroy');
+// Distributor
+Route::get('/generateCode','DistributorController@generateCode');
+// Route::get('/distributorInit','DistributorController@index');
+Route::post('/distributorCreate','DistributorController@create');
+Route::put('/distributorUpdate','DistributorController@update');
+Route::delete('/distributorDelete/{id}','DistributorController@destroy');
 
-// Tracking
-Route::get('/trackinginit','TrackingController@index');
-Route::post('/trackingcreate','TrackingController@create');
-Route::put('/trackingupdate','TrackingController@update');
-Route::delete('/trackingdelete/{id}','TrackingController@destroy');
+// JOF Order
+// Route::get('/JOFinit/{id}','JOFController@index');
+Route::post('/JOFcreate','JOFController@create');
+Route::put('/JOFupdate','JOFController@update');
+Route::delete('/JOFdelete/{id}','JOFController@destroy');
+// get number series
+Route::get('/getSeries','JOFController@getSeries');
 
-// Tracking of Payments
-Route::get('/trackingpaymentinit/{id}','TrackingPaymentsController@index');
-Route::post('/trackingpaymentcreate','TrackingPaymentsController@create');
-Route::put('/trackingpaymentupdate','TrackingPaymentsController@update');
-Route::post('/updatebalance/{id}','TrackingPaymentsController@updatebalance');
+// Return Jof or Add Tracking no
+Route::post('/JOFupdateStatus','JOFController@updateStatus');
+Route::post('/JOFupdateTracking','JOFController@addTrackingno');
 
-//customer tracking
-Route::get('/customertracking/{id}','TrackingController@customertracking');
-Route::put('/u_u_receipt','TrackingPaymentsController@updateImage');
+Route::get('/JOFstatus','JOFController@JOFstatus');
 
-// collection Report 
-Route::get('/reportInit','CollectionReportController@index');
+Route::get('/exportpdf','JOFController@ExportPDF');
 
-// history logs
-Route::get('/historyinit','HistoryLogsController@index');
+// Route::get('/JOFPending','JOFController@JOFPending');
+// Route::get('/JOFDelivered','JOFController@JOFDelivered');
+
+// JOF History
+Route::post('/jofhistory','JofHistoryController@jofhistory');
+Route::get('/getJOF/{id}','JofHistoryController@getJOF');
+Route::get('/getJOFAll/{id}','JofHistoryController@index');
+
+// 7th day due date
+Route::get('/sevenDueDate','JOFController@sevenDueDate');

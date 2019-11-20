@@ -63,7 +63,7 @@ th {
 <template>
 <div>
       <v-toolbar flat color="white">
-        <v-toolbar-title>Registration Section</v-toolbar-title>
+        <v-toolbar-title>Receiving Section</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
       <v-spacer></v-spacer>
@@ -200,7 +200,7 @@ th {
              item.jof_status = 'Division I'
             break;
           case 2:
-            item.jof_status = 'Registration Section'
+            item.jof_status = 'Receiving Section'
             break;
         }
           axios.post('/api/JOFupdateStatus',item)

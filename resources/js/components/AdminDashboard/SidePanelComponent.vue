@@ -1,6 +1,6 @@
 <style scoped>
     .sidebarBackground{
-        background: black;
+        background: #343a40;
         top: 179px !important;
         overflow: auto;
         height: 100% !important;
@@ -11,15 +11,6 @@
         font-size: 16px !important;
     }
    
-    .navContent{
-        border-width: 6px 0px 0px 0px;
-        border-style: solid;
-        border-color: white;
-        margin-bottom: 0px !important;
-        position: relative;
-        top: 24px;
-        padding: 10px
-    }
     .main-container {
         padding: 0px 0px 0px 0px !important;
         margin: 0px;
@@ -31,7 +22,7 @@
     max-width: 100%;
     }
     header.m-header {
-        background-image: linear-gradient(to right, #fff138 30%, #e83530);
+        background: #1a75bc !important;
     }
     header.m-header {
         display: flex;
@@ -43,6 +34,8 @@
     .m-title {
         text-align: center;
         margin-top: 10px;
+        margin: auto;
+        color: white !important;
     }
     .m-title>p>ul {
         display: inline-flex;
@@ -134,6 +127,10 @@
     }
 }
 
+.theme--light.v-list {
+    height: 800px;
+}
+
         
 </style>
 
@@ -144,61 +141,117 @@
               <img src="img/vy-logo-header.png" alt="">
           </div>
           <div class="m-title">
-              <p>V.Y Domingo Jewellers</p>
-              <p>• Manufacturer • Wholesaler • Designer</p>
-              <p>Factory Since 1928</p>
+              <p>V.Y. Domingo Jewellers</p>
+              <p>• Manufacturer • Wholesaler • Designers</p>
           </div>
       </header>
        <!-- <v-app-bar class='v-header' dark prominent absolute >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </v-app-bar> -->
-    <v-navigation-drawer v-model="drawer" app class='sidebarBackground' absolute >
-      <v-list-item >
+    <v-navigation-drawer v-if="role!=101" v-model="drawer" app class='sidebarBackground' absolute >
+      <!-- <v-list-item >
         <v-list-item-content ></v-list-item-content>
       </v-list-item>
-      <v-divider></v-divider>
+      <v-divider></v-divider> -->
       <v-list dense nav>
         <div v-if="seen">
-        <v-list-item v-if="role==1"  class='navContent' href='/'>
+        <!-- <v-list-item v-if="role==1"  class='navContent' href='/'>
           <v-list-item-content>
             <v-list-item-title class='navList'>Dashboard</v-list-item-title>
           </v-list-item-content>
-        </v-list-item>
-        <v-list-item v-if="role==1"  class='navContent' href='/systemuser'>
+        </v-list-item> -->
+        <v-list-item v-if="role==0"  class='navContent' @click="getRoute('systemuser')">
           <v-list-item-content>
             <v-list-item-title class='navList'>System Users</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-         <v-list-item v-if="role==1"  class='navContent' href='/tracking'>
+
+          <v-list-item class='navContent' v-if="role==0 || role==11" @click="getRoute('jofexport')">
           <v-list-item-content>
-            <v-list-item-title class='navList'>Tracking</v-list-item-title>
+            <v-list-item-title class='navList'>7-Day Due Date</v-list-item-title>
+          </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item v-if="role==0 || role==9 ||  role==1 || role==11" class='navContent' @click="getRoute('jofstatus')">
+          <v-list-item-content>
+            <v-list-item-title class='navList'>List of Orders</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item v-if="role==1"   class='navContent' href='/collectionreport'>
+
+        <v-list-item v-if="role==0 || role==9 || role==11" class='navContent' @click="getRoute('distributors')">
           <v-list-item-content>
-            <v-list-item-title class='navList'>Collection Report</v-list-item-title>
+            <v-list-item-title class='navList'>Distributors</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item v-if="role==1" class='navContent' href='/emailtemplate'>
+
+        <v-list-item v-if="role==0 || role==9 || role==11"  class='navContent' @click="getRoute('joforder')">
           <v-list-item-content>
-            <v-list-item-title class='navList'>Set Email Template</v-list-item-title>
+            <v-list-item-title class='navList'>JOF Orders </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item v-if="role==1" class='navContent' href='/historylog'>
+         <v-list-item v-if="role==0 || role==1 || role==11"  class='navContent' @click="getRoute('receiving')">
           <v-list-item-content>
-            <v-list-item-title class='navList'>History Logs</v-list-item-title>
+            <v-list-item-title class='navList'>Receiving Section</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item v-if="role==0" class='navContent' href='/mytracking'>
+        <v-list-item v-if="role==0 || role==2 || role==11"   class='navContent' @click="getRoute('divisionI')">
           <v-list-item-content>
-            <v-list-item-title class='navList'>My Tracking</v-list-item-title>
+            <v-list-item-title class='navList'>Division I</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item v-if="role==0" class='navContent' href="/changepassword">
+           <v-list-item v-if="role==0 || role==3 || role==11"   class='navContent' @click="getRoute('divisionII')">
           <v-list-item-content>
-            <v-list-item-title class='navList'>Change Password</v-list-item-title>
+            <v-list-item-title class='navList'>Division II</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <!-- <v-list-item v-if="role==0 || role==3" class='navContent' href='/plastic'>
+          <v-list-item-content>
+            <v-list-item-title class='navList'>Plastic Section</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item v-if="role==0 || role==4" class='navContent' href='/wax'>
+          <v-list-item-content>
+            <v-list-item-title class='navList'>Wax Section</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item> -->
+
+           <!-- <v-list-item v-if="role==0 || role==5" class='navContent' href='/casting'>
+          <v-list-item-content>
+            <v-list-item-title class='navList'>Casting Section</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item> -->
+
+           <!-- <v-list-item v-if="role==0 || role==6" class='navContent' href='/salugar'>
+          <v-list-item-content>
+            <v-list-item-title class='navList'>Salugar Section</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item> -->
+
+          <!-- <v-list-item v-if="role==0 || role==7" class='navContent' href='/stone'>
+          <v-list-item-content>
+            <v-list-item-title class='navList'>Stone Section</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+          <v-list-item v-if="role==0 || role==8" class='navContent' href='/finishing'>
+              <v-list-item-content>
+                <v-list-item-title class='navList'>Finishing Section</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item> -->
+
+              <v-list-item v-if="role==0 || role==10" class='navContent' @click="getRoute('divisionIII')">
+              <v-list-item-content>
+                <v-list-item-title class='navList'>Division III</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-list-item @click="getRoute('changepass')">
+              <v-list-item-content>
+                <v-list-item-title class='navList'>Change Password</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+        
+       
         <v-list-item class='navContent' href='/logout'>
           <v-list-item-content>
             <v-list-item-title class='navList'>Logout</v-list-item-title>
@@ -216,22 +269,22 @@
 </v-app>
 </template>
 
-<<script>
+<script>
 export default {
     data(){
         return {
-            items: [
-                { title: 'Dashboard'},
-                { title: 'System Users'},
-                { title: 'Tracking'},
-                { title: 'Collection Report'},
-                { title: 'Set Email Template'},
-                { title: 'Change Password'},
-                { title: 'History Logs'},
-                { title: 'Logout'},
-            ],
+            // items: [
+            //     { title: 'Dashboard'},
+            //     { title: 'System Users'},
+            //     { title: 'Tracking'},
+            //     { title: 'Collection Report'},
+            //     { title: 'Set Email Template'},
+            //     { title: 'Change Password'},
+            //     { title: 'History Logs'},
+            //     { title: 'Logout'},
+            // ],
             right: null,
-            drawer: true,
+            drawer: false,
             role:'',
             seen:false
         }
@@ -241,7 +294,46 @@ export default {
         .then((response)=>{
               this.role = response.data.role
               this.seen = true
+              if(this.role != 101){
+               this.drawer= true
+              }
         })
+     },
+     methods:{
+       getRoute(routes){
+         switch(routes){
+          case 'systemuser':
+                this.$router.push('/systemuser')
+            break;
+          case 'jofexport':
+                this.$router.push('/jofexport')
+            break;
+          case 'jofstatus':
+                this.$router.push('/jofstatus')
+             break;
+          case 'distributors':
+                this.$router.push('/distributors')
+             break;
+          case 'joforder':
+                this.$router.push('/joforder')
+             break;
+          case 'receiving':
+                this.$router.push('/receiving')
+             break;
+          case 'divisionI':
+                this.$router.push('/divisionI')
+             break;
+          case 'divisionII':
+                this.$router.push('/divisionII')
+             break;
+          case 'divisionIII':
+                this.$router.push('/dispatching')
+             break;
+           case 'changepass':
+                this.$router.push('/changepass')
+             break;
+         }
+       }
      }
    
 }

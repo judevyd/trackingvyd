@@ -348,10 +348,7 @@ span.fb-sales {
                 </v-data-table>
             </v-card-text>
         </v-card>
-      <v-data-table :headers="headers" :items="dataItems" :search="search" class="elevation-1"  :footer-props="{
-    'items-per-page-options': [10, 25, 30, 40, 50]
-  }"
-  :items-per-page="25">
+      <v-data-table :headers="headers" :items="dataItems" :search="search" class="elevation-1" >
         <template v-slot:top>
            <div class="legends">
              <input type="radio" name="optradio" v-on:click="displayData('All')" :checked='radiobtns.pending'><label class=' bg-pending textpads'>Pending JOF Order</label>
@@ -499,7 +496,7 @@ span.fb-sales {
         else return 'none'
       },
 
-      displayData(a){
+        displayData(a){
         //radio button when clicked. shows only data needed
         switch(a){
           case 'Done':

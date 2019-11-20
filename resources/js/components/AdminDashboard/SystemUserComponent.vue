@@ -27,6 +27,10 @@
             <v-card-text>
               <v-container grid-list-md>
                 <v-layout wrap>
+                  <v-flex xs12>
+                        <v-select  v-model="editedItem.organization_name" :items="departments" label="Select Department" outlined></v-select>
+                  </v-flex>
+
                   <v-flex xs6>
                     <v-text-field v-model="editedItem.first_name" label="First name" :rules="ruleRequired"></v-text-field>
                   </v-flex>
@@ -34,19 +38,10 @@
                     <v-text-field v-model="editedItem.last_name" label="Last name" :rules="ruleRequired"></v-text-field>
                   </v-flex>
                   <v-flex xs12>
-                    <v-text-field v-model="editedItem.organization_name" label="Organization Name" :rules="ruleRequired"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12>
-                    <v-text-field v-model="editedItem.address" label="Address" :rules="ruleRequired"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12>
-                    <v-text-field v-model="editedItem.mobileno" label="Mobile No" :rules="ruleRequired"></v-text-field>
-                  </v-flex>
-                  <v-flex xs12>
                     <v-text-field v-model="editedItem.email" :rules="emailRules && ruleRequired" label="Email" ></v-text-field>
                   </v-flex>
                   <v-flex xs12>
-                    <v-text-field v-model="editedItem.password" :type="show1 ? 'text': 'password'" label="Password"></v-text-field>
+                    <v-text-field v-model="password" :type="show1 ? 'text': 'password'" label="Password"></v-text-field>
                   </v-flex>
                 </v-layout>
               </v-container>
@@ -78,13 +73,13 @@
       search: '',
       show1:false,
       inset: false,
-      password: 'passowrd',
+      password: '',
+      // departments:['Sales Officer','Receiving Section','Mold Section','Casting Section','Stone Section','Finishing Section','Dispatching Section','Full Control'],
+       departments:['Sales Officer','Receiving Section','Division I','Division II','Division III','Full Control'],
       headers: [
         { text: 'First Name', value: 'first_name', },
         { text: 'Last Name', value: 'last_name', },
         { text: 'Organization Name', value: 'organization_name', },
-        { text: 'Address', value: 'address', },
-        { text: 'Mobile No.', value: 'mobileno', },
         { text: 'Email', value: 'email', },
         { text: 'Password', value: 'password', },
         { text: 'Actions', value: 'action', sortable: false },
@@ -147,6 +142,27 @@
 
      async save () {
         if(this.$refs.form.validate()){
+            switch(this.editedItem.organization_name){
+              case 'Sales Officer':
+                  this.editedItem.role = 9
+                break;
+              case 'Receiving Section':
+                  this.editedItem.role = 1
+                break;
+              case 'Division I':
+                  this.editedItem.role = 2
+                break;
+              case 'Division II':
+                  this.editedItem.role = 3
+                break;
+              case 'Division III':
+                  this.editedItem.role = 10
+                break;
+              case 'Full Control':
+                this.editedItem.role = 11
+              break;
+
+            }
               if (this.editedIndex > -1) {
                   this.toBeUpdated = this.dataItems[this.editedIndex]
                  axios.put('/api/userupdate',this.editedItem)
@@ -155,13 +171,15 @@
                         // handle error
                         console.log(error);
                     })
-                    //  Object.assign(this.dataItems[this.editedIndex], this.editedItem)
 
                 } else {
                     this.addedItems = this.editedItem
-                    this.addedItems.password = ''
+                    this.editedItem.password = this.password
                     axios.post('/api/usercreate',this.editedItem)
-                    .then(()=> this.dataItems.push(this.addedItems))
+                    .then(()=> {
+                       this.addedItems.password = ''
+                     this.dataItems.push(this.addedItems)
+                    })
                 }
                 this.close()
         }

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Validator;
 
 use Carbon\Carbon;
 use App\User;
-use App\HistoryLogs;
 
 class UserController extends Controller
 {
@@ -19,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $result = User::where('role','0')->get()->all();
+        $result = User::where('role','>','0')->get()->all();
         return $result;
     }
 
@@ -34,9 +33,8 @@ class UserController extends Controller
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'organization_name' => $data['organization_name'],
-            'address' => $data['address'],
-            'mobileno' => $data['mobileno'],
             'email' => $data['email'],
+            'role' => $data['role'],
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -46,9 +44,8 @@ class UserController extends Controller
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'organization_name' => $data['organization_name'],
-            'address' => $data['address'],
-            'mobileno' => $data['mobileno'],
             'email' => $data['email'],
+            'role' => $data['role'],
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -92,16 +89,11 @@ class UserController extends Controller
     }
 
     public function logout(Request $request){
-        if(Auth::user()->role == 0){
-            HistoryLogs::where('user_id', Auth::user()->id)
-            ->orderby('id', 'desc')
-            ->take(1)
-            ->update([
-                'last_logout_at' => Carbon::createFromFormat('Y-m-d H:i:s', now())->setTimezone('Asia/Singapore')
-                ]);
-        }
         Auth::logout();
         return redirect('/');
+    }
+    public function getUser(Request $request){
+        return Auth::user();
     }
    
 

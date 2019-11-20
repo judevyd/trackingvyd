@@ -18,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\MyEvents' => [
+            'App\Listeners\Joforder',
+        ],
     ];
 
     /**
@@ -29,6 +32,18 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        Event::listen('event.*', function ($eventName, array $data) {
+            //
+        });
+    }
+    public function shouldDiscoverEvents()
+    {
+        return true;
+    }
+    protected function discoverEventsWithin()
+    {
+        return [
+            $this->app->path('Listeners'),
+        ];
     }
 }
