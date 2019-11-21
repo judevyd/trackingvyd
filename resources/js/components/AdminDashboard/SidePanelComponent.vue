@@ -141,14 +141,14 @@
               <img src="img/vy-logo-header.png" alt="">
           </div>
           <div class="m-title">
-              <p>V.Y. Domingo Jewellers</p>
+              <p>V.Y. Domingo Jewellers Incorporated</p>
               <p>• Manufacturer • Wholesaler • Designers</p>
           </div>
       </header>
        <!-- <v-app-bar class='v-header' dark prominent absolute >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </v-app-bar> -->
-    <v-navigation-drawer v-if="role!=101" v-model="drawer" app class='sidebarBackground' absolute >
+    <v-navigation-drawer v-if="role!=30" v-model="drawer" app class='sidebarBackground' absolute >
       <!-- <v-list-item >
         <v-list-item-content ></v-list-item-content>
       </v-list-item>
@@ -172,9 +172,9 @@
           </v-list-item-content>
           </v-list-item>
 
-          <v-list-item v-if="role==0 || role==9 ||  role==1 || role==11" class='navContent' @click="getRoute('jofstatus')">
+          <v-list-item v-if="role==0 || role==9 ||  role==1 || role==11 || role==30  " class='navContent' @click="getRoute('jofstatus')">
           <v-list-item-content>
-            <v-list-item-title class='navList'>List of Orders</v-list-item-title>
+            <v-list-item-title class='navList'>List of All Orders</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -186,12 +186,12 @@
 
         <v-list-item v-if="role==0 || role==9 || role==11"  class='navContent' @click="getRoute('joforder')">
           <v-list-item-content>
-            <v-list-item-title class='navList'>JOF Orders </v-list-item-title>
+            <v-list-item-title class='navList'>Job Order Form </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
          <v-list-item v-if="role==0 || role==1 || role==11"  class='navContent' @click="getRoute('receiving')">
           <v-list-item-content>
-            <v-list-item-title class='navList'>Receiving Section</v-list-item-title>
+            <v-list-item-title class='navList'>Registration Section</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item v-if="role==0 || role==2 || role==11"   class='navContent' @click="getRoute('divisionI')">
@@ -241,7 +241,7 @@
 
               <v-list-item v-if="role==0 || role==10" class='navContent' @click="getRoute('divisionIII')">
               <v-list-item-content>
-                <v-list-item-title class='navList'>Division III</v-list-item-title>
+                <v-list-item-title class='navList'>Dispatching Section</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
 

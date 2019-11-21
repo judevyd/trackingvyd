@@ -75,7 +75,7 @@
       inset: false,
       password: '',
       // departments:['Sales Officer','Receiving Section','Mold Section','Casting Section','Stone Section','Finishing Section','Dispatching Section','Full Control'],
-       departments:['Sales Officer','Receiving Section','Division I','Division II','Division III','Full Control'],
+       departments:['Sales Officer','Receiving Section','Division I','Division II','Division III','Full Control','Service'],
       headers: [
         { text: 'First Name', value: 'first_name', },
         { text: 'Last Name', value: 'last_name', },
@@ -160,6 +160,8 @@
                 break;
               case 'Full Control':
                 this.editedItem.role = 11
+              case 'Service':
+                this.editedItem.role = 30
               break;
 
             }

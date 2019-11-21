@@ -1,381 +1,165 @@
-<style scoped>
-header.m-header>.m-h-img>img {
-    width: 250px;
-    max-width: 100%;
+<style lang="scss" scoped>
+.chip{
+  background: #ffffff5e !important; 
 }
-header.m-header {
-    background-color: #1a75bc;
+.process{
+  background: #64b5f6 !important; 
 }
-header.m-header {
+button.my-12.v-btn.v-btn--contained.theme--dark.v-size--large.blue.lighten-2 {
+    top: 5px;
+}
+.row.search-bar>div{
     display: flex;
 }
-.m-title>p {
-    padding: 0px !important;
-    margin: 0px !important;
+.v-input.my-12.theme--light.v-text-field.v-text-field--is-booted.v-text-field--enclosed.v-text-field--outlined {
+    margin: 0px 15px;
 }
-.m-title {
-    text-align: center;
-    margin-top: 10px;
+.row.search-bar>div {
     margin: auto;
-    color: white !important;
+    width: 500px !important;
 }
-.m-title>p>ul {
-    display: inline-flex;
-    margin-bottom: 0px !important;
-    margin-left: 15px !important;
+th{
+  font-size: 17px !important;
 }
-.m-title>p:nth-child(1) {
-    font-family: Century;
-    font-size: 58px;
+.row{
+    margin-bottom: 15px !important;
 }
-.m-title>p:nth-child(2) {
-    margin-right: 30px;
-    font-size: 26px;
-    font-family: Century;
-}
-.m-title>p:nth-child(3) {
-    font-family: Century;
-    font-weight: bold;
-    font-size: 20px;
-    margin-top: 5px !important;
-
-}
-@media only screen and (max-width: 716px) {
-    .m-title>p:nth-child(1) {
-        font-size: 34px;
-    }
-    .m-title>p:nth-child(2) {
-        font-size: 16px;
-    }
-
-    .m-title>p:nth-child(3) {
-        font-size: 14px;
-    }
-
-    header.m-header>.m-h-img>img {
-        width: 210px;
-        max-width: 100%;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .m-title>p:nth-child(1) {
-        font-size: 26px;
-    }
-    .m-title>p:nth-child(2) {
-        font-size: 14px;
-    }
-    .m-title>p:nth-child(3) {
-        font-size: 12px;
-    }
-
-    header.m-header>.m-h-img>img {
-        width: 170px;
-        max-width: 100%;
-    }
-}
-
-@media only screen and (max-width: 464px){
-    .m-title>p:nth-child(1) {
-        font-size: 18px;
-    }
-    .m-title>p:nth-child(2) {
-        font-size: 10px;
-    }
-    .m-title>p:nth-child(3) {
-        font-size: 8px;
-    }
-
-    header.m-header>.m-h-img>img {
-        width: 140px;
-        max-width: 100%;
-    }
-}
-
-@media only screen and (max-width: 360px) {
-    .m-title>p:nth-child(1) {
-        font-size: 14px;
-    }
-    .m-title>p:nth-child(2) {
-        font-size: 8px;
-    }
-    .m-title>p:nth-child(3) {
-        font-size: 6px;
-    }
-
-    header.m-header>.m-h-img>img {
-        width: 110px;
-        max-width: 100%;
-    }
-}
-.container {
-    border-top: 2px Solid gray;
-    max-width: 100%;
-    background: white;
-}
-
-
-.row.t-row>.col-md-4.offset-md-8>p {
-    text-align: center;
-    color: white;
-}
-
-.row.t-row>.t-row-2.col-md-7>p {
-    text-align: center;
-    color: #000304;
-    font-family: Arial;
-    font-size: 30px;
-    font-weight: bold;
-}
-.embed-responsive.embed-responsive-16by9 {
-    border: 1px Solid white;
-}
-
-.form-header {
-    padding: 8px !important;
-    margin: 15px -15px;
-    background: #1a75bc;
-    text-align: center;
-    font-size: 29px;
-}
-
-input.form-control {
-    background: transparent;
-    color: black;
-    border-radius: 0px !important;
-    border: 2px solid black;
-}
-
-.t-row-2.col-md-5>form {
-    background: gray;
-    padding: 15px;
-}
-
-::placeholder {
-  color: black;
-  opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
- color: black;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
- color: black;
-}
-
-.row.t-row>.col-md-5.offset-md-7 {
-    text-align: center;
-}
-
-.t-row-2.col-md-5>img {
-    border-radius: 30px;
-}
-.row.t-row>.col-md-5.offset-md-7>p {
-    display: inline;
-    color: black;
-    border: 1px solid;
-    padding: 10px;
-}
-
-.row.t-row>.col-md-5.offset-md-7>p:hover {
-    color: white;
-    background: #1a75bc;
-    border: 1px solid #1a75bc;
-    cursor: pointer;
-}
-
-button.btn.mt-3.btn-secondary.btn-block {
-    width: 125px;
-    margin: auto;
-    background: #1a75bc;
-    border: 1px solid #1a75bc;
-    color: white;
-    font-weight: 500;
-}
-
-.m-desc.col>p {
-    text-align: center;
-    color: black;
-    margin: 30px 30px;
-    font-size: 20px;
-}
-.gradient-divider {
-    background-image: linear-gradient(black, #a2a2a2);
-    padding: 10px;
-    width: 100%;
-}
-.t-row-2.col-md-5 {
-    margin: auto;
-}
-.divider {
-    color: grey;
-    background: grey;
-    width: 1px;
-    margin: 10px;
-}
-p.l-row-address {
-    margin-top: 15px;
-    margin-left: 20px;
-}
-p.l-row-address-2 {
-    margin-top: 15px;
-    text-align: center;
-}
-p.l-row-address-2>span {
-   color: black;
-    font-size: 26px;
-    font-weight: bold;
-}
-p.l-row-address>span:nth-child(1) {
-    color: black;
-    font-size: 24px;
-}
-
-p.l-row-address>span:nth-child(2) {
-   color: black;
-}
-
-.l-sm-form>form {
-    background: white;
-    padding: 10px;
-    margin: 15px;
-}
-.form-group.message-area>textarea.form-control {
-    border-radius: 0px;
-    border: 2px solid;
-}
-.contact-info.col {
-    margin: auto;
-}
-
-.help-block{
-    color: #e83530;
-}
-
-.t-row-2.col-md-7 {
-    margin: auto;
-}
-
 </style>
 
-
-
 <template>
-    <div>
-        <header class="m-header">
-            <div class="m-h-img">
-                <img src="img/vy-logo-header.png" alt="">
+<div>
+     <v-app light>
+   
+    <v-content>
+      <section>
+        <!-- <v-parallax src="img/home-maxres.jpg" height="600"> -->
+        <v-parallax class='bg-dark' height="600">
+          <v-layout column align-center justify-center class="white--text">
+            <img src="img/vy-logo-main.png" alt="VY DOMINGO" height="200">
+            <h1 class="white--text mb-2 display-1 text-center">V.Y. DOMINGO JEWELLERS</h1>
+            <div class="subheading mb-4 text-center">• MANUFACTURER • WHOLESALER • DESIGNERS</div>
+          </v-layout>
+           <v-flex class="my-4">
+            <div class="text-center">
+              <h2 class="headline"><b>Login for the eyes of V.Y. Domingo Sales Officer And Admin</b></h2>
             </div>
-            <div class="m-title">
-                <p>V.Y. Domingo Jewellers</p>
-                <p>• Manufacturer • Wholesaler • Designers</p>
+          </v-flex>
+          <div class="container">
+            <div class="row search-bar">
+              <div>
+                  <input v-model="loginDetails.email" type="email" class="form-control" placeholder="Email ">
+                  
+                <!-- <v-btn class="my-12" color="blue lighten-2" dark large @click='searchurl()'> Search</v-btn> -->
+              </div>
             </div>
-        </header>
-        <b-container class="vy-main-cont">
-            <b-row class="t-row">
-                <b-col md="5" offset-md="7"><p v-b-modal.modal-1> Login to your account </p></b-col>
-                <b-col md="7" class="t-row-2"><p>Get updates on your orders!</p></b-col>
-            </b-row>
-            <b-row class="m-row">
-                <b-col md="7" class="t-row-2">
-                    <div>
-                        <b-carousel
-                            id="carousel-1" :interval="7000" controls indicators background="#ababab" img-width="1024" img-height="480" style="text-shadow: 1px 1px 2px #333;">
+             <div class="row search-bar">
+              <div>
+                  <span class="help-block" v-if="errorsEmail">        
+                      {{emailError}}
+                    </span>
+              </div>
+            </div>
+            <div class="row search-bar">
+              <div>
+                  <input v-model="loginDetails.password" type="password" class="form-control" placeholder="Password">
+              </div>
+            </div>
+            <div class="row search-bar">
+              <div>
+                   <span class="help-block" v-if="errorsPassword">
+                        {{passwordError}}
+                    </span>
+              </div>
+            </div>
+            <div class="row search-bar">
+              <div>
+                <!-- <v-btn class="my-12" color="blue lighten-2" dark large @click='searchurl()'> Search</v-btn> -->
+                <b-button class="mt-3" block @click="login()">Login</b-button>
+              </div>
+            </div>
+          </div>
+        </v-parallax>
+      </section>
 
-                            <!-- Slides with custom text -->
-                            <b-carousel-slide img-src="img/FT_1.jpg">
-                                <p style="font-size: 26px;">The wax impression of each ring is carefully check, clean and resize to its proper size and weight before costing.</p>
-                            </b-carousel-slide>
+      <section>
+        <v-layout
+          column
+          wrap
+          class="my-12"
+        >
+         
+         
+        </v-layout>
+      </section>
+       <section>
+        <v-layout
+          column
+          wrap
+          class="my-12"
+        >
+          <v-flex xs12 sm4 class="my-4">
+            <div class="text-center">
+              <h2 class="headline">GET UPDATES ON YOUR ORDERS!</h2>
+            </div>
+             <div class="container">
+            <div class="row search-bar">
+              <div>
+                <v-text-field v-model="trackcode"  class="my-12" label="Type your customer code assigned to you" outlined></v-text-field>
+                <v-btn class="my-12" color="blue lighten-2" dark large @click='searchurl()'> Search</v-btn>
+              </div>
+            </div>
+          </div>
+          </v-flex>
+              <v-data-table  :headers="headers" :items="dataItems" :search="search" class="elevation-1">
+                      <template v-slot:item.jof_status="{ item }" > 
+                        <v-chip class="process" v-if="item.jof_status == 'Receiving Section'"> ORDER RECEIVED</v-chip> 
+                        <v-chip class="process" v-else-if="item.jof_status == 'Mold Section'" >MOLDING</v-chip>
+                        <v-chip class="process" v-else-if="item.jof_status == 'Casting Section'" >CASTING</v-chip>
+                        <v-chip class="process" v-else-if="item.jof_status == 'Stone Section'" >STONE SETTING</v-chip>
+                        <v-chip class="process" v-else-if="item.jof_status == 'Finishing Section'" >FINISHING</v-chip>
+                        <v-chip class="chip" v-else-if="item.jof_status == 'Done'" >DELIVERED</v-chip> 
+                        <v-chip class="process" v-else>{{item.jof_status}}</v-chip>
+                    </template>
+              </v-data-table>
+          <v-flex xs12 >
+            <v-container grid-list-xl>
+              <v-layout row wrap align-center>
+                <v-flex xs12 md12>
+                  <div class="headline"><b>NOTE: </b>Incase you cannot search the status of your order, please ask our sales officer</div>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-flex>
+        </v-layout>
+      </section>
 
-                              <b-carousel-slide img-src="img/FT_2.jpg">
-                                <p style="font-size: 26px;">The process of setting a stone in the ring. All stones are meticulously selected to ensures same sizes and quality.</p>
-                            </b-carousel-slide>
-
-                              <b-carousel-slide img-src="img/FT_3.jpg">
-                                <p style="font-size: 26px;">Rings are being checked carefully to ensure that all spellings and wordings are correct before smithing.</p>
-                            </b-carousel-slide>
-
-                            <b-carousel-slide img-src="img/FT_4.jpg">
-                                <p style="font-size: 26px;">Details as to size diameter and proper placement of inserts are accurately done.</p>
-                            </b-carousel-slide>
-                              
-                            <b-carousel-slide img-src="img/FT_5.jpg">
-                                <p style="font-size: 26px;">Soldering inserts in the shank are manually done to make sure that inserts are correctly positioned.</p>
-                            </b-carousel-slide>
-
-                            <b-carousel-slide img-src="img/FT_6.jpg">
-                                <p style="font-size: 26px;">The process of creating / producing of mother mold to ensure the accurate output of the exact weight, dimension, size and wordings in the ring.</p>
-                            </b-carousel-slide>
-
-                            </b-carousel>
-                    </div>
-                </b-col>
-                <b-col md="5" class="t-row-2">
-                     <b-col class="m-desc"><p>Welcome to V.Y.Domingo Jewellers Incorporated.<br>
-                    World famous for customized and personalized Jewelry.<br>
-                    We are the largest manufacturer ,supplier and exporter of Class Rings, Military Rings, Corporate Award Jewelry,<br>
-                    Name Jewelry and Championship/Sports Rings from the Philippines to the whole World.<br>
-                    Our excellent workmanship is the trademark of truly successful International Jewelry brands Worldwide.<br>
-                    Our pieces are carefully handcrafted with masterpieces produced by our artisans and designers.<br>
-                    Lowest Pricing – Direct Manufacturer Prices<br>
-                    and Best Quality Assurance !<br>
-                    Quality and Service is our Mission !<br>
-                    Customer Satisfaction is our GOAL!</p></b-col>
-                </b-col>
-            </b-row>
-           <b-modal hide-footer id="modal-1" title="Login">
-                            <div class="form-group">
-                                <input v-model="loginDetails.email" type="email" class="form-control" placeholder="Email ">
-                                <span class="help-block" v-if="errorsEmail">
-                                        {{emailError}}
-                                </span>
-                            </div>
-                            <div class="form-group">
-                                <input v-model="loginDetails.password" type="password" class="form-control" placeholder="Password">
-                                <span class="help-block" v-if="errorsPassword">
-                                    {{passwordError}}
-                                </span>
-                            </div>
-                                <!-- <label for="forgot-password">Forgot Password?</label> -->
-                            <b-button class="mt-3" block @click="login()">Login</b-button>
-                        </b-modal>
-            <b-row class="l-row">
-                <b-col class="contact-info">
-                    <div>
-                        <p class="l-row-address">
-                        <span for="address">Address <br></span>
-                        <span for="address">#35 Emerald Street, Millionaires Village, <br> Novaliches, Quezon City, Philippines, 1117</span>
-                        </p>
-                    </div>
-                    <div>
-                        <p class="l-row-address">
-                        <span for="address">Let's Talk <br></span>
-                        <span for="address">(632) 938-4221</span>
-                        </p>
-                    </div>
-                     <div>
-                        <p class="l-row-address">
-                        <span for="address">Sales Support <br></span>
-                        <span for="address">vydomingo@gmail.com</span>
-                        </p>
-                    </div>
-                </b-col>
-            </b-row>
-        </b-container>
-    </div>
+    </v-content>
+  </v-app>
+ </div>
 </template>
 
 <script>
 export default {
    data() {
         return {
+            title: '',
             loginDetails: {
                 email: '',
                 password: '',
                 remember: false
 
             },
+            trackcode:'',
+            search: '',
+            headers:[
+            { text: 'Job Order No', value: 'refno',},
+            { text: 'Tracking No', value: 'trackingno',},
+            { text: 'Kind', value: 'kind_of_ring',  },
+            { text: 'Date Prepared', value: 'date_prepared',  },
+            { text: 'Due Date', value: 'due_date',  },
+            { text: 'Order Status', value: 'jof_status', },
+            ],
+            dataItems:[],
               signUpDetails:{
                 first_name: '',
                 last_name: '',
@@ -441,7 +225,10 @@ export default {
                      case 11:
                             location.href = "/jofexport";
                         break; 
-                    case 101:
+                      case 101:
+                            location.href = "/jofstatus";
+                        break; 
+                      case 30:
                             location.href = "/jofstatus";
                         break; 
                     }
@@ -494,7 +281,13 @@ export default {
                     }
                 }
             });
-        }
+        },
+        searchurl(){
+        axios.get('/getTracking/'+this.trackcode)
+          .then((response)=>{
+                this.dataItems =  response.data
+          })
+    }
     }
 }
 </script>

@@ -114,7 +114,7 @@ th {
 <template>
 <div>
       <v-toolbar flat color="white">
-        <v-toolbar-title>Division III</v-toolbar-title>
+        <v-toolbar-title>Dispatching Section</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
       <v-spacer></v-spacer>

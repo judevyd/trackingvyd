@@ -15,6 +15,9 @@
 .v_img{
   cursor: pointer !important;
 }
+.flex.xs12-offset {
+    text-align: right;
+}
 .file-upload-form, .image-preview {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     padding: 20px;
@@ -30,8 +33,6 @@ img.preview {
     max-width: 600px;
     margin: auto;
 }
-
-
 .trans{
   -webkit-animation: NAME-YOUR-ANIMATION 1s infinite;  /* Safari 4+ */
   -moz-animation: NAME-YOUR-ANIMATION 1s infinite;  /* Fx 5+ */
@@ -64,32 +65,221 @@ th {
 <template>
 <div>
       <v-toolbar flat color="white">
-        <v-toolbar-title>JOF Order</v-toolbar-title>
+        <v-toolbar-title>JOF Order For Registration</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
       <v-spacer></v-spacer>
+
+  <v-dialog v-model="details">
+              <v-card>
+              <v-card-title>
+                <span class="headline">JOF Details</span>
+                <v-flex xs11></v-flex>
+              </v-card-title>
+            <v-card-text>
+              <v-container grid-list-md>
+                <v-layout wrap>
+                   <v-flex xs12>Kind of Ring: <label>{{detailItems.kind_of_ring}}</label></v-flex>
+                   
+                    <v-flex xs6>Stone: <label>{{detailItems.stone}}</label></v-flex>
+                    <v-flex xs6>Ring Size: <label>{{detailItems.ring_size}}</label></v-flex>
+                    <v-flex xs6>Bridge: <label>{{detailItems.bridge}}</label></v-flex>
+                    <v-flex xs6>Year: <label>{{detailItems.year}}</label></v-flex>
+                    <v-flex xs6>Weight: <label>{{detailItems.weight}}</label></v-flex>
+                    <v-flex xs6>Karat: <label>{{detailItems.karat}}</label></v-flex>
+                    <v-flex xs6>Oxidation: <label>{{detailItems.oxidation}}</label></v-flex>
+                    <v-flex xs6>Text Style: <label>{{detailItems.text_style}}</label></v-flex>
+                    <v-flex xs6>Inside Engrave: <label>{{detailItems.inside_engrave}}</label></v-flex>
+                    <v-flex xs6>Quantity: <label>{{detailItems.quantity}}</label></v-flex>
+                   <!-- Shanks -->
+                    <v-flex xs12>
+                      <v-card>
+                        <v-card-title>
+                            <span class="headline">Shanks</span>
+                          </v-card-title>
+                          <v-card-text>
+                            <v-container grid-list-md>
+                                <v-layout wrap>
+                                    <v-flex xs4><label>LEFT SHANK</label></v-flex>
+                                    <v-flex xs4><label>TOP SHANK</label></v-flex>
+                                    <v-flex xs4><label>RIGHT SHANK</label></v-flex>
+                                     <v-flex xs4><label>{{detailItems.left_shank}}</label></v-flex>
+                                    <v-flex xs4><label>{{detailItems.top_shank}}</label></v-flex>
+                                    <v-flex xs4><label>{{detailItems.right_shank}}</label></v-flex>
+                                </v-layout>
+                            </v-container>
+                          </v-card-text>
+                      </v-card>
+                    </v-flex>
+                </v-layout>
+              </v-container>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
+        <!-- Modal JOF Details End -->
+
+
+<!-- Modal JOF Details -->
+        <v-dialog v-model="jof_form">
+      <v-btn color="primary" @click.native="print">Print</v-btn>
+        <div class="container-fluid" id="printjof">
+        <div class="card">
+            <div class="card-header">
+              Order Details
+            </div>
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-6 order-no">
+                          <div><span class="jof-no">Order type: {{detailItems.kind_of_order}}</span></div>
+                        </div>
+                        <div class="col-6 jof-no-div">
+                            <div><span class="jof-no">JOF#: {{detailItems.jofno}}</span></div>
+                            <div><span class="due-date">Due Date : {{detailItems.due_date}}</span></div>
+                            <div><span class="fb-sales">{{detailItems.fb_sales_name}}</span></div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-2 order-details">
+                            <div>Distributor: </div> 
+                            <div>Customer Name:</div> 
+                            <div>Order Name:</div> 
+                        </div>
+                        <div class="col-4 order-details">
+                            <div>{{detailItems.distributor_code}}</div>
+                            <div>{{detailItems.customer_name}}</div>
+                            <div>{{detailItems.orderno}}</div>
+
+                        </div>
+                        <div class="col-2 order-details">
+                            <div>Date Prepared: </div> 
+                            <div>Due Date:</div> 
+                            <div>Prepared By:</div> 
+                        </div>
+                        <div class="col-4 order-details">
+                            <div>{{detailItems.date_prepared}}</div>
+                            <div>{{detailItems.due_date}}</div>
+                            <div>{{detailItems.created_by}}</div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-2 order-details">
+                            <div>Kind : </div> 
+                        </div>
+                        <div class="col-4 order-details">
+                            <div>{{detailItems.kind_of_ring}}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 ring-details">
+                            <div>Stone : </div> 
+                            <div>Ring Size :</div> 
+                            <div>Text Style :</div> 
+                            <div>Inside Engrave :</div>
+
+                        </div>
+                        <div class="col-4 ring-details">
+                            <div>{{detailItems.stone}}</div>
+                            <div>{{detailItems.ring_size}}</div>
+                            <div>{{detailItems.text_style}}</div>
+                            <div>{{detailItems.inside_engrave}}</div>
+
+                        </div>
+                        <div class="col-2 ring-details">
+                           <div>Metal :</div> 
+                            <div>Karat :</div> 
+                            <div>Weight :</div> 
+                            <div>Oxidation :</div>
+                        </div>
+                        <div class="col-4 ring-details">
+                            <div>{{detailItems.metal}}</div>
+                            <div>{{detailItems.karat}}</div>
+                            <div>{{detailItems.weight}}</div>
+                            <div>{{detailItems.oxidation}}</div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row shank-details-hdr">
+                        <div class="col shanks-details">
+                         Left Shank
+                        </div>
+                        <div class="col shanks-details">
+                         Top Details
+                        </div>
+                        <div class="col shanks-details">
+                         Right Shank
+                        </div>
+                    </div>
+                    <div class="row shank-details-body">
+                        <div class="col shanks-details">
+                        {{detailItems.left_shank}}
+                        </div>
+                        <div class="col shanks-details">
+                         {{detailItems.top_shank}}
+                        </div>
+                        <div class="col shanks-details">
+                         {{detailItems.right_shank}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row ring-att">
+                        <div class="col remarks">REMARKS :{{detailItems.attach_remarks}}</div>
+                    </div>
+                    <div class="row ring-attachment">
+                        <div class="col-2"></div>
+                        <div class="col-8 ring-img"><img :src="detailItems.upload_image" class="img-fluid" alt="Ring Image"></div>
+                        <div class="col-2"></div>
+                    </div>
+                    <br><br>
+                    <div class="row foot-remarks">
+                        <div class="col">
+                            <div>Receiving</div>
+                            <div>Mould</div>
+                            <div>Plastic</div>
+                            <div>Metal</div>
+                            <div>Wax</div>
+                            <div>Treeing</div>
+                            <div>Casting</div>
+                        </div>
+                        <div class="col">
+                            <div>Smithing</div>
+                            <div>Pre-Polishing</div>
+                            <div>Stone Setting</div>
+                            <div>Final Polish</div>
+                            <div>Finishing</div>
+                            <div>Dispatching</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+        </v-dialog>
+  <!-- Modal JOF Details End -->
+
+
       <!-- ADD JOF MODAL -->
-        <v-dialog v-model="dialog" max-width="1250px">
+        <v-dialog persistent="" v-model="dialog" max-width="1250px">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark class="mb-2" v-on="on">Create New JOF</v-btn>
+            <v-btn color="primary" dark class="mb-2" v-on="on">Create New Job Order</v-btn>
 
           </template>
           <v-form ref="form" v-model="valid" lazy-validation  @submit.prevent>
           <v-card>
             <v-card-title>
-              <span class="headline">{{ formTitle }}</span>
-            <v-btn color="primary" dark class="mb-2" v-on:click="getSeries()" :disabled="seriesbtn">Generate JOF No.</v-btn>
-
+              <span class="headline">Create Job Order </span>
+              <v-spacer></v-spacer>
             </v-card-title>
-
             <v-card-text>
               <v-container grid-list-md>
                 <v-layout wrap>
                     <v-flex xs6>
-                   <v-text-field v-model="editedItem.refno" filled readonly label="Order No" ></v-text-field>
+                   <v-text-field v-model="editedItem.refno" filled readonly label="Order No" :rules="ruleRequired"></v-text-field>
                   </v-flex>
                   <v-flex xs6>
-                   <v-text-field v-model="editedItem.jofno" filled readonly label="JOF#" ></v-text-field>
+                   <v-text-field v-model="editedItem.jofno" filled readonly label="JOF#" :rules="ruleRequired"></v-text-field>
                   </v-flex>
                      <v-flex xs6>
                    <v-text-field v-model="editedItem.orderno" label="Order Name" ></v-text-field>
@@ -147,14 +337,13 @@ th {
                         </v-flex>
                          <v-layout wrap>
                         <v-flex xs6>
-                           <v-select  v-model="editedItem.stone" :items="stones"  label="Select Stone Type" outlined></v-select>
+                           <v-text-field  v-model="editedItem.stone" label="Stone Type :" placeholder="Example: Special Stone Cats Eye"></v-text-field>
                         </v-flex>
                         <v-flex xs6>
-                            <v-text-field v-model="kind_stone" label="Stone" placeholder="Example: Aquamarine"></v-text-field>
+                            <v-text-field v-model="editedItem.kind_stone" label="Stone :" placeholder="Example: Aquamarine"></v-text-field>
                         </v-flex>
-                         
                         <v-flex xs6>
-                          <v-select  v-model="editedItem.ring_size" :items="size_ring"  label="Select Ring Size" outlined></v-select>
+                          <v-text-field  v-model="editedItem.ring_size" label="Ring Size :" placeholder="Input Ring Size"></v-text-field>
                         </v-flex>
                          <v-flex xs6>
                             <v-select  v-model="editedItem.metal" :items="metals"  label="Select Metal" outlined></v-select>
@@ -238,17 +427,18 @@ th {
                              <!-- <v-file-input @change="uploadImage" accept="image/*" label="Attach Image" name="upload_image"></v-file-input> -->
                             <input type="file" @change="uploadImage" accept="image/*">
                         </v-flex>
+                        <v-flex xs12-offset>
+                            <v-btn color="primary" dark class="mb-2" v-on:click="getSeries()" :disabled="seriesbtn">Generate JOF No.</v-btn>
+                        </v-flex>
                             </v-layout>
                         </v-card-text>
                     </v-card>
                   </v-flex>
-              
-
                 </v-layout>
               </v-container>
             </v-card-text>
-
             <v-card-actions>
+
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
               <v-btn color="blue darken-1" text @click="save">Save</v-btn>
@@ -272,10 +462,13 @@ th {
             <v-chip v-else-if="item.sp_approve==2" class="bg-danger">Declined</v-chip> 
             </div>
           </template>
-        <template v-slot:item.action="{ item }">
-          <v-icon small class="mr-2" @click="editItem(item)" > edit </v-icon>
-          <v-icon small  @click="deleteItem(item)" > delete </v-icon>
-        </template>
+           <template v-slot:item.view_details="{ item }" > 
+            <v-chip v-on:click="openJOF(item)">View JOF</v-chip> 
+          </template>
+          <template v-slot:item.action="{ item }">
+            <v-icon small class="mr-2" @click="editItem(item)" > edit </v-icon>
+            <v-icon small  @click="deleteItem(item)" > delete </v-icon>
+          </template>
   </v-data-table>
   </div>
 </template>
@@ -284,9 +477,13 @@ th {
   export default {
     data: () => ({
       dialog: false,
+      jof_form: false,
+      printdialog:false,
       displayfb:false,
       valid:false,
+      stone:'',
       kind_stone:'',
+      details:'',
       search: '',
       show1:false,
       menu1:false,
@@ -303,12 +500,14 @@ th {
         { text: 'Kind of Ring', value: 'kind_of_ring',  },
         { text: 'JOF Status', value: 'jof_status', },
         { text: 'Special Order', value: 'sp_approve', },
+        { text: 'View Details', value: 'view_details', },
         { text: 'Actions', value: 'action', sortable: false },
       ],
       ruleRequired: [
         v => !!v || 'Field is required',
       ],
       dataItems:[],
+      detailItems:[],
       addedItems:{},
       editedIndex: -1,
       editedItem: {
@@ -328,8 +527,8 @@ th {
       date1:new Date().toISOString().substr(0, 10),
       date2:new Date().toISOString().substr(0, 10),
       stones:['Faceted','Smooth','Solid Top','Special Stone'],
-      metals:['Vellum','Stainless Steel','Silver','Brass','Gold'],
-      karat:['Vellum','Stainless','925 Sterling Silver','Gold Plated','4K','6K','8K','10','12K','14K','18K','21K'],
+      metals:['Vellum','Stainless Steel','Silver','Brass','Bronze','Gold','Copper','Yellow Gold','White Gold','Rose Gold'],
+      karat:['Vellum','Stainless','925 Sterling Silver','Gold Filled','Silver Plated','Gold Plated','4K','5K','6K','8K','9K','10','12K','14K','18K','21K'],
       kindoforder:['Local','Export','Facebook','Remake'],
       size_ring:['3.5','4','4.5','5','5.5','6','6.5','7','7.5','8','8.5','9','9.5','10','10.5',
       '11','11.5','12','12.5','13','13.5','14','14.5','15','15.5','16','16.5','17'],
@@ -376,13 +575,11 @@ th {
         });
     },
 //methods
-
     methods: {
       editItem (item) {
           this.editedIndex = this.dataItems.indexOf(item)
           this.editedItem = Object.assign({}, item)
           this.dialog = true
-       
       },
       deleteItem (item,a) {
         const index = this.dataItems.indexOf(item)
@@ -410,7 +607,7 @@ th {
             // UPDATE/SAVE JOF
             this.editedItem.date_prepared = this.date1
             this.editedItem.due_date = this.date2
-            this.editedItem.jof_status ='Receiving Section'
+            this.editedItem.jof_status ='Registration Section'
             if (this.editedIndex > -1) {
                 this.toBeUpdated = this.dataItems[this.editedIndex]
                 axios.put('/api/JOFupdate',this.editedItem)
@@ -489,6 +686,20 @@ th {
         }else{
           this.displayfb=false
         }
+      },
+      getDetails(item){
+        this.details=true
+        this.detailItems = item
+      },
+      openJOF(item) {
+        this.jof_form = true
+        this.detailItems = item
+      },
+      print(){
+        this.$htmlToPaper('printjof');
+      },
+      printstatus(){
+        this.$htmlToPaper('printlist');
       },
        
     },
