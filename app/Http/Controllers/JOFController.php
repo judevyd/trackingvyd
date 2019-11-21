@@ -24,7 +24,7 @@ class JOFController extends Controller
     {
         switch($id){
             case 1:
-                $status = "Receiving Section";
+                $status = "Registration Section";
                break;
             case 2:
                 // $status = "Mold Section";
