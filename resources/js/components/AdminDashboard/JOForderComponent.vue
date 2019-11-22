@@ -81,7 +81,7 @@ th {
                 <v-layout wrap>
                    <v-flex xs12>Kind of Ring: <label>{{detailItems.kind_of_ring}}</label></v-flex>
                    
-                    <v-flex xs6>Stone: <label>{{detailItems.stone}}</label></v-flex>
+                    <v-flex xs6>Stone: <label>{{detailItems.stone}} {{detailItems.kind_stone}}</label></v-flex>
                     <v-flex xs6>Ring Size: <label>{{detailItems.ring_size}}</label></v-flex>
                     <v-flex xs6>Bridge: <label>{{detailItems.bridge}}</label></v-flex>
                     <v-flex xs6>Year: <label>{{detailItems.year}}</label></v-flex>
@@ -136,7 +136,7 @@ th {
                         <div class="col-6 jof-no-div">
                             <div><span class="jof-no">JOF#: {{detailItems.jofno}}</span></div>
                             <div><span class="due-date">Due Date : {{detailItems.due_date}}</span></div>
-                            <div><span class="fb-sales">{{detailItems.fb_sales_name}}</span></div>
+                            <div><span class="fb-sales">FB Sales Name : {{detailItems.fb_sales_name}}</span></div>
                         </div>
                     </div>
                     <br>
@@ -181,7 +181,7 @@ th {
 
                         </div>
                         <div class="col-4 ring-details">
-                            <div>{{detailItems.stone}}</div>
+                            <div>{{detailItems.stone}} {{detailItems.kind_stone}}</div>
                             <div>{{detailItems.ring_size}}</div>
                             <div>{{detailItems.text_style}}</div>
                             <div>{{detailItems.inside_engrave}}</div>
@@ -258,13 +258,10 @@ th {
       </div>
         </v-dialog>
   <!-- Modal JOF Details End -->
-
-
       <!-- ADD JOF MODAL -->
         <v-dialog persistent="" v-model="dialog" max-width="1250px">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark class="mb-2" v-on="on">Create New Job Order</v-btn>
-
+            <v-btn color="primary" dark class="mb-2" v-on="on" v-on:click="createnew()">Create New Job Order</v-btn>
           </template>
           <v-form ref="form" v-model="valid" lazy-validation  @submit.prevent>
           <v-card>
@@ -305,8 +302,6 @@ th {
                   <v-flex xs12 >
                     <v-text-field v-model="editedItem.customer_name" label="Customer Name" ></v-text-field>
                   </v-flex>
-                  
-                  
                   <v-flex xs6>
                             <v-menu   v-model="menu1" :close-on-content-click="false" min-width="290px" offset-y >
                               <template v-slot:activator="{ on }">
@@ -438,9 +433,8 @@ th {
               </v-container>
             </v-card-text>
             <v-card-actions>
-
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+              <v-btn color="blue darken-1" text @click="close" :disabled="cancelbtn">Cancel</v-btn>
               <v-btn color="blue darken-1" text @click="save">Save</v-btn>
             </v-card-actions>
           </v-card>
@@ -518,6 +512,7 @@ th {
       activeuser:{},
       numberseries:{},
       seriesbtn:false,
+      cancelbtn:false,
       defaultItem: {
         jofno:'',
         refno:''
@@ -527,9 +522,9 @@ th {
       date1:new Date().toISOString().substr(0, 10),
       date2:new Date().toISOString().substr(0, 10),
       stones:['Faceted','Smooth','Solid Top','Special Stone'],
-      metals:['Vellum','Stainless Steel','Silver','Brass','Bronze','Gold','Copper','Yellow Gold','White Gold','Rose Gold'],
-      karat:['Vellum','Stainless','925 Sterling Silver','Gold Filled','Silver Plated','Gold Plated','4K','5K','6K','8K','9K','10','12K','14K','18K','21K'],
-      kindoforder:['Local','Export','Facebook','Remake'],
+      metals:['Vellum','Stainless Steel','Silver Alloy','Sterling Silver','Brass','Bronze','Gold','Copper','Yellow Gold','White Gold','Rose Gold'],
+      karat:['Vellum','Stainless','925 Sterling Silver','80/20 Silver','Gold Filled','Silver Plated','Yellow Gold Plated','4K Gold','5K Gold','6K Gold','8K Gold','9K Gold','10 Gold','12K Gold','14K Gold','18K Gold','21K Gold'],
+      kindoforder:['Local','Export','Facebook - VYD Account','Facebook - VYD Staff','Installment Plan','Remake'],
       size_ring:['3.5','4','4.5','5','5.5','6','6.5','7','7.5','8','8.5','9','9.5','10','10.5',
       '11','11.5','12','12.5','13','13.5','14','14.5','15','15.5','16','16.5','17'],
       textstyle:['Bold','Script'],
@@ -577,9 +572,16 @@ th {
 //methods
     methods: {
       editItem (item) {
+          this.seriesbtn = true
+          this.cancelbtn = false
           this.editedIndex = this.dataItems.indexOf(item)
           this.editedItem = Object.assign({}, item)
           this.dialog = true
+      },
+      createnew()
+      {
+        this.seriesbtn = false
+        this.cancelbtn = false
       },
       deleteItem (item,a) {
         const index = this.dataItems.indexOf(item)
@@ -596,7 +598,7 @@ th {
 
     async save (a) { 
         this.editedItem.created_by = this.activeuser.first_name+' '+ this.activeuser.last_name
-        this.editedItem.stone += ' '+this.kind_stone
+        // this.editedItem.stone += ' '+this.editedItem.kind_stone
         this.editedItem.sp_approve = 0
         if(this.switch1){
           this.editedItem.sp_order = 1
@@ -639,7 +641,6 @@ th {
        getColor (a) {
           var duedate = new Date(a),
             datenow =  new Date(new Date().getTime()+(120*24*8*31*1000)).toISOString().substr(0, 10)
-
         if (new Date(datenow) > duedate) return 'trans'
         else return 'none'
         // else return 'green'
@@ -659,7 +660,7 @@ th {
             this.defaultItem.jofno = seriesno
             this.defaultItem.refno = 'TR-'+seriesno
             this.defaultItem.newseries =seriesno
-
+            this.cancelbtn = true
             this.seriesbtn = true
         })
       },
@@ -681,7 +682,7 @@ th {
       },
       // if order type is facebook 
       fSales(){
-        if(this.editedItem.kind_of_order=='Facebook'){
+        if(this.editedItem.kind_of_order=='Facebook - VYD Staff'){
           this.displayfb=true
         }else{
           this.displayfb=false
@@ -703,9 +704,6 @@ th {
       },
        
     },
-
-   
-   
     
   }
 </script>

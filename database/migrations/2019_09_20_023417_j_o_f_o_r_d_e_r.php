@@ -34,6 +34,7 @@ class JOFORDER extends Migration
             $table->string('karat')->nullable();
             $table->string('text_style')->nullable();
             $table->string('stone')->nullable();
+            $table->string('kind_stone')->nullable();
             $table->string('weight')->nullable();
             $table->string('oxidation')->nullable();
             $table->string('inside_engrave')->nullable();
