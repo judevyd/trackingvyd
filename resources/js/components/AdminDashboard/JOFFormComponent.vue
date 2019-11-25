@@ -16,7 +16,7 @@
             </div>
             <div class="card-body">
                 <div class="container-fluid">
-                    <div class="row">
+                    <div class="row">                                                
                         <div class="col-6 order-no">
                             <div>ORDER No. : <span class="order-name">ORDER#16992</span></div>
                             <div>Reference No. : <span class="order-name">REF#190000000001</span></div>
