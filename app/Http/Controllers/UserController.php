@@ -61,23 +61,29 @@ class UserController extends Controller
         if(Auth::Check())
         {
             $request_data = $request->All();
+            // dd($request_data['current_password'] == null);
             switch($id){
                 case 1:
                     $current_password = Auth::User()->password;           
                     if(Hash::check($request_data['current_password'], $current_password))
                     {           
-                    return 'Confirmed';
+                        return 'Confirmed';
                     }
-                    else
-                    {           
-                    $error =  'Please enter correct current password';
-                    return $error ;  
+                    elseif($request_data['current_password'] == null){
+                        return 'empty';
+                    }else{           
+                    // $error =  'Please enter correct current password';
+                    return 'error' ;  
                     }
                 break;
                 case 2:
                     $user_id = Auth::User()->id;                       
                     $obj_user = User::find($user_id);
                     $obj_user->password = Hash::make($request_data['newpass']);;
+                    if($request_data['newpass'] == null)
+                    {
+                        return 'empty';    
+                    }
                     $obj_user->save(); 
                     return 'Change Password Confirmed';
                 break;
